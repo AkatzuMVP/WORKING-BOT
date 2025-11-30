@@ -11,7 +11,7 @@ const {
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMembers // REQUIRED for guildMemberAdd
+    GatewayIntentBits.GuildMembers // REQUIRED for join event
   ]
 });
 
@@ -22,7 +22,7 @@ const commands = [
     .setDescription('Replies with Pong!')
 ].map(command => command.toJSON());
 
-// When bot starts
+// READY EVENT
 client.once('ready', async () => {
   console.log(`Logged in as ${client.user.tag}!`);
   
@@ -42,7 +42,7 @@ client.once('ready', async () => {
   }
 });
 
-// RANDOM JOIN MESSAGE EVENT
+// JOIN MESSAGE EVENT
 client.on("guildMemberAdd", async (member) => {
 
   const messages = [
@@ -70,15 +70,15 @@ client.on("guildMemberAdd", async (member) => {
 
   const pick = messages[Math.floor(Math.random() * messages.length)];
 
-  // Replace with your channel ID
+  // Replace CHANNEL ID here
   const channel = member.guild.channels.cache.get("1396185862089474138");
 
   if (!channel) return;
 
-  channel.send(`${member} ${pick}`); // pings the user
+  channel.send(`${member} ${pick}`);
 });
 
-// Handle slash commands
+// Slash command handler
 client.on('interactionCreate', async interaction => {
   if (!interaction.isChatInputCommand()) return;
   
@@ -87,7 +87,13 @@ client.on('interactionCreate', async interaction => {
   }
 });
 
-// Check for token
+// TOKEN MISSING CHECK
 if (!process.env.TOKEN) {
-  console.error('ERROR: TOKEN environment variable is not set!');
-  console.error('Please add your Discord bot token in Railwa
+  console.error(
+    'ERROR: TOKEN environment variable is not set! Please add your Discord bot token in Railway as a variable named TOKEN.'
+  );
+  process.exit(1);
+}
+
+// LOGIN
+client.login(process.env.TOKEN);
