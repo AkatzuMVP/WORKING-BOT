@@ -71,7 +71,7 @@ client.on("guildMemberAdd", async (member) => {
   const pick = messages[Math.floor(Math.random() * messages.length)];
 
   // Replace with your channel ID
-  const channel = member.guild.channels.cache.get("YOUR_CHANNEL_ID");
+  const channel = member.guild.channels.cache.get("1396185862089474138");
 
   if (!channel) return;
 
