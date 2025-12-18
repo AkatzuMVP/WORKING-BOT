@@ -14,9 +14,11 @@ const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMembers,
+    GatewayIntentBits.GuildModeration, // 🔴 REQUIRED FOR TIMEOUT
     GatewayIntentBits.MessageContent
   ]
 });
+;
 
 // =======================
 // SLASH COMMANDS (REGISTER ONCE)
