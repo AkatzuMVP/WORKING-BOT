@@ -55,10 +55,13 @@ client.once("ready", async () => {
   const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);
 
   try {
-    await rest.put(
-      Routes.applicationCommands(client.user.id),
-      { body: slashCommands }
-    );
+    const GUILD_ID = "1395724919903354912";
+
+await rest.put(
+  Routes.applicationGuildCommands(client.user.id, GUILD_ID),
+  { body: slashCommands }
+);
+
     console.log("✅ Slash commands registered.");
   } catch (err) {
     console.error("❌ Slash command registration failed:", err);
