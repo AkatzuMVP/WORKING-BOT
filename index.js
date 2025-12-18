@@ -112,29 +112,7 @@ client.on("interactionCreate", async interaction => {
   if (interaction.commandName === "ping") {
     return interaction.reply("Pong!");
   }
-
-  // /newmatch
-  if (interaction.commandName === "newmatch") {
-    const user1 = interaction.options.getUser("user1");
-    const user2 = interaction.options.getUser("user2");
-    const cupid = interaction.options.getUser("cupid");
-
-    const embed = {
-      color: 0x0e0e11,
-      description:
-`:p_bow04~2:   **NEW MATCH.ᐟ**
-
-
-⠀ ⠀ ⠀ ⠀ ${user1} ♡ match · ${user2}   :p_flower21:
-
-
-**cupid:** ${cupid}   :p_heart05~2:`
-    };
-
-    return interaction.reply({ embeds: [embed] });
-  }
-});
-
+  
 // =======================
 // PREFIX COMMANDS (m!)
 // =======================
